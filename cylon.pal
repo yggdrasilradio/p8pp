@@ -1,0 +1,39 @@
+
+	*200
+
+	/ Set up the pattern to rotate
+	cla cll
+	tad (7
+
+	/ Rotate pattern through AC
+	jms wait
+	ral
+	jmp .-2
+
+	/ Wait a bit
+wait,	0
+	dca ac		/ save AC
+	tad delay	/ set up delay counter
+	dca count2
+	tad ac		/ restore AC
+loop,	isz count1
+	jmp .-1
+	jms keyin	/ check for keystroke
+	isz count2
+	jmp loop
+	jmp i wait
+
+	/ Return to OS8 monitor on any key
+keyin,	0
+	ksf		/ key pressed?
+	jmp i keyin	/ no
+	krb		/ yes
+	jmp i [7600	/ return to OS8
+
+count1,	0
+count2,	0
+ac,	0
+
+	decimal
+
+delay,	-100

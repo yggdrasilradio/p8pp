@@ -1,0 +1,29 @@
+
+        *200
+
+        cla cll
+	tad (hello	/ "HELLO WORLD!"
+	jms print	/ display on terminal
+        jmp i [7600	/ return to OS8 monitor
+
+/ Print a NULL-terminated string
+print,	0
+        dca ptr
+loop,	tad i ptr
+        sna
+        jmp i print
+        jms tty0
+	isz ptr
+        jmp loop
+
+ptr,	0
+
+/ Print a single character
+tty0,   0
+        tls
+        tsf
+        jmp .-1
+        cla
+        jmp i tty0
+
+hello, "H; "E; "L; "L; "O; 40; "W; "O; "R; "L; "D; "!; 0

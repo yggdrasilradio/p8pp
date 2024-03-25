@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+# PREPROCESSOR FOR TSS8 OR OS8 PAL8 FILE
+
+LIMIT = 60
+
+import sys
+
+def minify(text):
+    text = text.upper().split("/", 1)[0].strip().replace('\t', ' ')
+    while '  ' in text:
+        text = text.replace('  ', ' ')
+    while '; ' in text:
+        text = text.replace('; ', ';')
+    while ', ' in text:
+        text = text.replace(', ', ',')
+    return text
+
+# read PAL8 file
+linelist = sys.stdin.read().split('\n')
+
+# Generate our PAL8 program
+lines = ""
+for i, line in enumerate(linelist):
+
+    line = minify(line)
+    if len(line) > 0:
+        # concatenate line
+        if len(lines) > LIMIT:
+            print(lines)
+            lines = line
+        else:
+            if len(lines) > 0:
+                lines += ';' + line
+            else:
+                lines = line
+
+# Finish up
+if len(lines) > 0:
+    print(lines)
