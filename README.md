@@ -25,5 +25,3 @@ the corresponding programs after preprocessing:
 
 Example usage: `p8pp < cylon.pal > cylon.pa
 
-To be able to paste code into the SIMH simulator, try putting `set console speed=2400`
-in the file `/opt/pidp8i/share/boot/7.script`
