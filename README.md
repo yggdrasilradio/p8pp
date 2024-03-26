@@ -23,5 +23,5 @@ the corresponding programs after preprocessing:
 * hello.pal, hello.pa -- A "HELLO WORLD!" program
 * cylon.pal, cylon.pa -- Rotates some bits through the AC
 
-Example usage: `p8pp < cylon.pal > cylon.pa
+Example usage: `p8pp < cylon.pal > cylon.pa`
 
