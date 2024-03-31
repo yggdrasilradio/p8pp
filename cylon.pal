@@ -1,15 +1,43 @@
 
 	*200
 
-	/ Set up the pattern to rotate
+	/ Set up the bit pattern to rotate
 	cla cll
 	mql
 	tad (7
 
-	/ Rotate pattern through AC
-	jms wait
+	/ Rotate pattern back and forth through AC
+loop,	szl
+	jms right
+	rar
+	szl
+	jms left
 	ral
-	jmp .-2
+	jms wait
+hook,	ral
+	jmp loop
+
+	/ Rotate bits left
+left,	0
+	dca ac
+	tad lop
+	dca hook
+	tad ac
+	jmp i left
+
+lop,	ral
+
+	/ Rotate bits right
+right,	0
+	dca ac
+	tad rop
+	dca hook
+	tad ac
+	jmp i right
+
+rop,	rar
+
+ac,	0
 
 	/ Wait a bit
 wait,	0
@@ -17,11 +45,11 @@ wait,	0
 	tad delay	/ set up delay counter
 	dca count2
 	tad ac		/ restore AC
-loop,	isz count1
-	jmp .-1
+wait0,	isz count1
+	jmp wait0
 	jms keyin	/ check for keystroke
 	isz count2
-	jmp loop
+	jmp wait0
 	jmp i wait
 
 	/ Return to OS8 monitor on any key
@@ -33,7 +61,6 @@ keyin,	0
 
 count1,	0
 count2,	0
-ac,	0
 
 	decimal
 
