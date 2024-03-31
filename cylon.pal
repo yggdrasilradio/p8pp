@@ -3,6 +3,7 @@
 
 	/ Set up the pattern to rotate
 	cla cll
+	mql
 	tad (7
 
 	/ Rotate pattern through AC
