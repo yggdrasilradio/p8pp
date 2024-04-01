@@ -2,28 +2,69 @@
         *200
 
         cla cll
-	tad (hello	/ "HELLO WORLD!"
+	tad (hello1	/ "HELLO WORLD!"
+	jms print	/ display on terminal
+	tad (hello2	/ "HOW'S IT GOING?"
 	jms print	/ display on terminal
         jmp i [7600	/ return to OS8 monitor
 
 / Print a NULL-terminated string
 print,	0
         dca ptr
-loop,	tad i ptr
+print0,	tad i ptr
         sna
-        jmp i print
-        jms tty0
+        jmp print1
+	dca word
+
+	/ Print left 6 bits
+	tad word
+	bsw
+	and (77
+	sna
+	jmp print1
+	jms prchar
+
+	/ Print right 6 bits
+	tad word
+	and (77
+	sna
+	jmp print1
+        jms prchar
+
 	isz ptr
-        jmp loop
+        jmp print0
+
+print1,	tad (15		/ CR
+	jms tty
+	tad (12		/ LF
+	jms tty
+	jmp i print
 
 ptr,	0
+word,	0
 
-/ Print a single character
-tty0,   0
+/ Convert single character to ASCII and display on terminal
+prchar,   0
+
+	/ convert 6-bit to ASCII
+	cll
+	tad (-40
+	snl
+	tad (100
+	tad (40
+
+	/ display character
+	jms tty
+
+        jmp i prchar
+
+/ Display single character on terminal
+tty,	0
         tls
         tsf
         jmp .-1
-        cla
-        jmp i tty0
+	cla
+	jmp i tty
 
-hello, "H; "E; "L; "L; "O; 40; "W; "O; "R; "L; "D; "!; 0
+hello1,	text      /HELLO, WORLD!/
+hello2,	text      /HOW'S IT GOING?/
