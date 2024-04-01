@@ -2,19 +2,28 @@
 
 # PREPROCESSOR FOR TSS8 OR OS8 PAL8 FILE
 
-LIMIT = 60
+LIMIT = 55
 
 import sys
 
 def minify(text):
-    text = text.upper().split("/", 1)[0].strip().replace('\t', ' ')
-    while '  ' in text:
-        text = text.replace('  ', ' ')
-    while '; ' in text:
-        text = text.replace('; ', ';')
-    while ', ' in text:
-        text = text.replace(', ', ',')
-    return text
+    text = text.strip().replace('\t', ' ').upper()
+    temp = text
+    while '  ' in temp:
+        temp = temp.replace('  ', ' ')
+    if 'TEXT /' in temp:
+        text = text.split('/', 1)[0].replace(' ', '') + ' /' + text.split('/')[1] + '/'
+    elif 'TEXT "' in temp:
+        text = text.split('"', 1)[0].replace(' ', '') + ' "' + text.split('"')[1] + '"'
+    else:
+        while '  ' in text:
+            text = text.replace('  ', ' ')
+        while '; ' in text:
+            text = text.replace('; ', ';')
+        while ', ' in text:
+            text = text.replace(', ', ',')
+        text = text.split("/", 1)[0]
+    return text.strip()
 
 # read PAL8 file
 linelist = sys.stdin.read().split('\n')
