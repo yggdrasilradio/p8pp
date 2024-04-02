@@ -1,6 +1,7 @@
+	CR=15
+	LF=12
 
-        *200
-
+	*200
         cla cll
 	tad (hello1	/ "HELLO WORLD!"
 	jms print	/ display on terminal
@@ -11,6 +12,8 @@
 / Print a NULL-terminated string
 print,	0
         dca ptr
+
+	/ Get next two characters
 print0,	tad i ptr
         sna
         jmp print1
@@ -34,9 +37,10 @@ print0,	tad i ptr
 	isz ptr
         jmp print0
 
-print1,	tad (15		/ CR
+	/ Print CRLF
+print1,	tad (CR
 	jms tty
-	tad (12		/ LF
+	tad (LF
 	jms tty
 	jmp i print
 

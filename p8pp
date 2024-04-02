@@ -8,13 +8,10 @@ import sys
 
 def minify(text):
     text = text.strip().replace('\t', ' ').upper()
-    temp = text
-    while '  ' in temp:
-        temp = temp.replace('  ', ' ')
-    if 'TEXT /' in temp:
-        text = text.split('/', 1)[0].replace(' ', '') + ' /' + text.split('/')[1] + '/'
-    elif 'TEXT "' in temp:
-        text = text.split('"', 1)[0].replace(' ', '') + ' "' + text.split('"')[1] + '"'
+    temp = ',' + text.replace(' ', '')
+    if ',TEXT' in temp:
+        delim = temp.partition(',TEXT')[2][0]
+        text = text.split(delim, 1)[0].replace(' ', '') + ' ' + delim + text.split(delim)[1] + delim
     else:
         while '  ' in text:
             text = text.replace('  ', ' ')
