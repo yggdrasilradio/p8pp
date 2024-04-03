@@ -6,7 +6,7 @@ P8PP -- PAL8 preprocessor for PDP8 OS8
 
 ![](images/demo2.jpg)
 
-This utility will take PAL8 source for PDP8 OS8 and prepare it for use on a PDP8.  It will:
+This utility will take PALD/PAL8 source for PDP8 TSS8 or OS8 and prepare it for use on a PDP8.  It will:
 
 * convert the source to upper case,
 * remove comments,
