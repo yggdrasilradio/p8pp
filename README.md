@@ -1,5 +1,5 @@
 
-P8PP -- PAL8 preprocessor for PDP8 OS8
+P8PP -- PALD/PAL8 preprocessor for PDP8 TSS8/OS8
 ==========
 
 ![](images/demo1.jpg)
