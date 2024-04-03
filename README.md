@@ -17,7 +17,7 @@ This is a preprocessor that merely massages the source; it is not a compiler.  T
 is optimized for source file size and for pasting into SIMH.  It's not well-suited for generating listing
 files once it's on the PDP8, though.
 
-I've included two demo programs; the .pal files are the original source and the .pa files are
+I've included two demo programs; the .pal files are the original source and the .asc files are
 the corresponding programs after preprocessing:
 
 * hello.pal, hello.asc -- A "HELLO WORLD!" program (TSS8 version)
