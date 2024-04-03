@@ -2,7 +2,7 @@
 
 # PREPROCESSOR FOR TSS8 OR OS8 PAL8 FILE
 
-LIMIT = 55
+LIMIT = 70
 
 import sys
 
@@ -32,7 +32,7 @@ for i, line in enumerate(linelist):
     line = minify(line)
     if len(line) > 0:
         # concatenate line
-        if len(lines) > LIMIT:
+        if len(lines + line) > LIMIT:
             print(lines)
             lines = line
         else:

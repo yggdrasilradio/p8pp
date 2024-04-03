@@ -7,7 +7,7 @@
 	jms print	/ display on terminal
 	tad (hello2	/ "HOW'S IT GOING?"
 	jms print	/ display on terminal
-	hlt
+        jmp i [7600	/ return to OS8 monitor
 
 / Print a NULL-terminated string
 print,	0
@@ -21,9 +21,7 @@ print0,	tad i ptr
 
 	/ Print left 6 bits
 	tad word
-	rtr
-	rtr
-	rtr
+	bsw
 	and (77
 	sna
 	jmp print1
