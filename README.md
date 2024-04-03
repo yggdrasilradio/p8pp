@@ -20,8 +20,10 @@ files once it's on the PDP8, though.
 I've included two demo programs; the .pal files are the original source and the .pa files are
 the corresponding programs after preprocessing:
 
-* hello.pal, hello.pa -- A "HELLO WORLD!" program
-* cylon.pal, cylon.pa -- Rotates some bits through the AC
+* hello.pal, hello.asc -- A "HELLO WORLD!" program (TSS8 version)
+* cylon.pal, cylon.asc -- Rotates some bits through the AC (TSS8 version)
+* hello2.pal, hello2.asc -- A "HELLO WORLD!" program (OS8 version)
+* cylon2.pal, cylon2.asc -- Rotates some bits through the AC (OS8 version)
 
-Example usage: `p8pp < cylon.pal > cylon.pa`
+Example usage: `p8pp < cylon.pal > cylon.asc`
 
