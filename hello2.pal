@@ -51,11 +51,9 @@ word,	0
 prchar,   0
 
 	/ convert 6-bit to ASCII
-	cll
-	tad (-40
-	snl
-	tad (100
-	tad (40
+        tad (40
+        and (77
+        tad (40
 
 	/ display character
 	jms tty
