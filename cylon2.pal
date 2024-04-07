@@ -48,19 +48,49 @@ wait,	0
 wait0,	isz count1
 	jmp wait0
 	jms keyin	/ check for keystroke
+	cla		/ restore AC
+	tad ac
 	isz count2
 	jmp wait0
 	jmp i wait
 
-	/ Return to OS8 monitor on any key
+	/ Return to OS8 monitor on ^C
 keyin,	0
 	ksf		/ key pressed?
 	jmp i keyin	/ no
 	krb		/ yes
+        and (177        / just 7 bits of char
+        cma iac         / AC = -AC
+        tad (3          / AC += 3 (AC = -AC + 3)
+        sza             / zero if char == ^C, exit to monitor
+	jmp i keyin	/ return to caller
+
+	tad ctrlc	/ echo ^C to terminal
+	jms tty
+	tad ctrlc+1
+	jms tty
+	tad ctrlc+2
+	jms tty
+	tad ctrlc+3
+	jms tty
+
 	jmp i [7600	/ return to OS8
+
+	/ Display single character on terminal
+tty,	0
+        tls
+        tsf
+        jmp .-1
+	cla
+	jmp i tty
 
 count1,	0
 count2,	0
+
+ctrlc,	"^	
+	"C
+	15
+	12
 
 	decimal
 
